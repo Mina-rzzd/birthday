@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی ۱</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Tahoma, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .top-buttons {
+            position: fixed;
+            top: max(12px, env(safe-area-inset-top));
+            left: 12px;
+            display: flex;
+            gap: 10px;
+            z-index: 9999;
+            width: 20%;
+        }
+
+        .top-buttons button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,.2);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .image-box {
+            width: 100%;
+            height: 280px;
+            border: 3px dashed #bbb;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #fafafa;
+            margin-bottom: 25px;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .question {
+            font-size: 20px;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff9800;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #ff9800;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #f57c00;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+<div class="top-buttons">
+    <button onclick="location.href = 'index.html'">🏠 صفحه اصلی</button>
+        <button onclick="location.href = 'games.html'">🎮 صفحه بازی ها</button>
+</div>
+<div class="container">
+
+    <h1>بازی ۱</h1><h1 id="result-tag"></h1>
+
+    <div class="image-box">
+        <!-- عکس خودت را جایگزین کن -->
+        <img src="images/question1.png" alt="تصویر مرحله">
+    </div>
+
+    <div class="question">
+        اینجا متن سؤال یا راهنمای مرحله را بنویس.
+    </div>
+
+    <input
+            id="answer"
+            type="text"
+            placeholder="جواب را وارد کن">
+
+    <button id="submit" onclick="checkAnswer()">
+        ثبت پاسخ
+    </button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+    const score = 10;
+    const correctAnswer = "10";
+
+    if (localStorage.getItem("g1-status")) {
+        document.getElementById("submit").disabled = true;
+        document.getElementById("answer").disabled = true;
+        if (localStorage.getItem("g1-status") === "success"){
+        document.getElementById('result-tag').textContent = "✅";
+        }
+        if (localStorage.getItem("g1-status") === "failed") {
+            document.getElementById('result-tag').textContent = "❌";
+        }
+
+        document.getElementById('answer').value = localStorage.getItem("g1-answer");
+
+    }
+
+    function checkAnswer() {
+
+        const answer = document
+            .getElementById("answer")
+            .value
+            .trim();
+
+        if (answer === correctAnswer) {
+            document.getElementById("result").innerHTML =
+                "✅ آفرین! جوابت درست بود. " + score  + " امتیاز گرفتی😎👌";
+            localStorage.setItem("g1-status", "success");
+            localStorage.setItem("score", (Number(localStorage.getItem("score")) + score).toString());
+        } else {
+            document.getElementById("result").innerHTML =
+                "❌ جوابت اشتباه بود. هیچ امتیازی نگرفتی😔";
+            localStorage.setItem("g1-status", "failed");
+        }
+
+        localStorage.setItem("g1-answer", answer);
+    }
+</script>
+
+</body>
+</html>
