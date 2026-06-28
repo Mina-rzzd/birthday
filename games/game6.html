@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>بازی ۱</title>
+    <title>بازی 6</title>
 
     <style>
         * {
@@ -129,16 +129,16 @@
 </div>
 <div class="container">
 
-    <h1>بازی ۱</h1>
+    <h1>بازی 6</h1>
     <h1 id="result-tag"></h1>
 
     <div class="image-box">
         <!-- عکس خودت را جایگزین کن -->
-        <img alt="تصویر مرحله" src="../images/question1.png">
+        <img alt="تصویر مرحله" src="../images/g6.png">
     </div>
 
     <div class="question">
-        اینجا متن سؤال یا راهنمای مرحله را بنویس.
+        شماره گزینه را وارد کن.
     </div>
 
     <input
@@ -156,19 +156,19 @@
 
 <script>
     const score = 10;
-    const correctAnswer = "10";
+    const correctAnswer = "4";
 
-    if (localStorage.getItem("g1-status")) {
+    if (localStorage.getItem("g6-status")) {
         document.getElementById("submit").disabled = true;
         document.getElementById("answer").disabled = true;
-        if (localStorage.getItem("g1-status") === "success") {
+        if (localStorage.getItem("g6-status") === "success") {
             document.getElementById('result-tag').textContent = "✅";
         }
-        if (localStorage.getItem("g1-status") === "failed") {
+        if (localStorage.getItem("g6-status") === "failed") {
             document.getElementById('result-tag').textContent = "❌";
         }
 
-        document.getElementById('answer').value = localStorage.getItem("g1-answer");
+        document.getElementById('answer').value = localStorage.getItem("g6-answer");
 
     }
 
@@ -182,15 +182,15 @@
         if (answer === correctAnswer) {
             document.getElementById("result").innerHTML =
                 "✅ آفرین! جوابت درست بود. " + score + " امتیاز گرفتی😎👌";
-            localStorage.setItem("g1-status", "success");
+            localStorage.setItem("g6-status", "success");
             localStorage.setItem("score", (Number(localStorage.getItem("score")) + score).toString());
         } else {
             document.getElementById("result").innerHTML =
                 "❌ جوابت اشتباه بود. هیچ امتیازی نگرفتی😔";
-            localStorage.setItem("g1-status", "failed");
+            localStorage.setItem("g6-status", "failed");
         }
 
-        localStorage.setItem("g1-answer", answer);
+        localStorage.setItem("g6-answer", answer);
         document.getElementById("submit").disabled = true;
         document.getElementById("answer").disabled = true;
 
