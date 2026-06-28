@@ -1,14 +1,23 @@
-const deadline = new Date('2026-08-06T23:59:59');
-deadlineText.textContent = deadline.toLocaleDateString('fa-IR');
+// const deadline = new Date('2026-08-06T23:59:59');
+// deadlineText.textContent = deadline.toLocaleDateString('fa-IR');
 
 let startButton = document.getElementById('start-button');
-startButton.addEventListener("click", function (){
+startButton.addEventListener("click", function () {
     if (new Date() > deadline) {
         alert('⛔ وقت بازی تموم شده!');
         return;
     }
-    location.href='games.html';
+    location.href = 'games.html';
 });
+
+if (localStorage.getItem("score") === null) {
+    localStorage.setItem("score", 0);
+}
+document.getElementById('displayScore').textContent = localStorage.getItem("score");
+if (Number(localStorage.getItem("score")) === 1000000) {
+    document.getElementById('allScore').textContent = "عجب کسی هستی! همه امتیازا رو جمع کردی!! دمت گرم!!😎";
+}
+
 // function startButtonClick() {
 //     if (new Date() > deadline) {
 //         alert('⛔ وقت بازی تموم شده!');
@@ -16,10 +25,6 @@ startButton.addEventListener("click", function (){
 //     }
 //     location.href='games.html';
 // }
-
-
-
-
 
 
 //
