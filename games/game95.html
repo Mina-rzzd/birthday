@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html dir="rtl" lang="fa">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>بازی ۱</title>
 
     <style>
@@ -36,7 +36,7 @@
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
         }
 
         .container {
@@ -129,11 +129,12 @@
 </div>
 <div class="container">
 
-    <h1>بازی ۱</h1><h1 id="result-tag"></h1>
+    <h1>بازی ۱</h1>
+    <h1 id="result-tag"></h1>
 
     <div class="image-box">
         <!-- عکس خودت را جایگزین کن -->
-        <img src="../images/question1.png" alt="تصویر مرحله">
+        <img alt="تصویر مرحله" src="../images/question1.png">
     </div>
 
     <div class="question">
@@ -142,8 +143,8 @@
 
     <input
             id="answer"
-            type="text"
-            placeholder="جواب را وارد کن">
+            placeholder="جواب را وارد کن"
+            type="text">
 
     <button id="submit" onclick="checkAnswer()">
         ثبت پاسخ
@@ -160,8 +161,8 @@
     if (localStorage.getItem("g1-status")) {
         document.getElementById("submit").disabled = true;
         document.getElementById("answer").disabled = true;
-        if (localStorage.getItem("g1-status") === "success"){
-        document.getElementById('result-tag').textContent = "✅";
+        if (localStorage.getItem("g1-status") === "success") {
+            document.getElementById('result-tag').textContent = "✅";
         }
         if (localStorage.getItem("g1-status") === "failed") {
             document.getElementById('result-tag').textContent = "❌";
@@ -180,7 +181,7 @@
 
         if (answer === correctAnswer) {
             document.getElementById("result").innerHTML =
-                "✅ آفرین! جوابت درست بود. " + score  + " امتیاز گرفتی😎👌";
+                "✅ آفرین! جوابت درست بود. " + score + " امتیاز گرفتی😎👌";
             localStorage.setItem("g1-status", "success");
             localStorage.setItem("score", (Number(localStorage.getItem("score")) + score).toString());
         } else {
@@ -190,6 +191,8 @@
         }
 
         localStorage.setItem("g1-answer", answer);
+        document.getElementById("submit").disabled = true;
+        document.getElementById("answer").disabled = true;
     }
 </script>
 
