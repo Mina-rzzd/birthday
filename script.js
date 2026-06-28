@@ -1,4 +1,4 @@
-// const deadline = new Date('2026-08-06T23:59:59');
+const deadline = new Date('2026-08-06T23:59:59');
 // deadlineText.textContent = deadline.toLocaleDateString('fa-IR');
 
 let startButton = document.getElementById('start-button');
